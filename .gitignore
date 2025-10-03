@@ -1,0 +1,7 @@
+#build artefacts
+*.o
+*.elf
+*.iso
+
+#kernel v iso 
+iso/boot/kernel.elf
