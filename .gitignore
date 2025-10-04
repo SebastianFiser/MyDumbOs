@@ -1,7 +1,14 @@
 #build artefacts
 *.o
 *.elf
-*.iso
+*.local
+*.bin
+*.pcap
+*.map
 
 #kernel v iso 
 iso/boot/kernel.elf
+
+#disky
+/disk/*
+!/disk/.gitkeep
