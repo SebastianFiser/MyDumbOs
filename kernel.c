@@ -4,7 +4,7 @@ typedef uint32_t size_t;
 
 extern char __bss[], __bss_end[], __stack_top[];
 
-void *memset(void *buf, cahr c, size_t n) {
+void *memset(void *buf, char c, size_t n) {
     uint8_t *p = (uint8_t *)buf;
     while (n--) 
         *p++ = c;
