@@ -1,6 +1,6 @@
 #pragma once
 
-struct sbiert {
+struct sbiret {
     long error;
     long value;
 };
