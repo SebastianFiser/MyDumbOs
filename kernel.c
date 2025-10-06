@@ -1,10 +1,7 @@
-typedef unsigned char uint8_t;
-typedef unsigned int uint32_t;
-typedef uint32_t size_t;
-
 extern char __bss[], __bss_end[], __stack_top[];
 
 #include "kernel.h"
+#include "common.h"
 
 struct sbiret sbi_call(long arg0, long arg1, long arg2, long arg3, long arg4,
                        long arg5, long fid, long eid) {
@@ -30,23 +27,13 @@ void putchar(char ch) {
 }
 
 void kernel_main(void) {
-    const char *s = "\n\nHello World from MyDumbOs!\n";
-    for (int i = 0; s[i] != '\0'; i++) {
-        putchar(s[i]);
-    }
+    printf("\n\nWelcome to %s\n", "MyDumbOs");
+    printf("1 + 2 = %d, %x\n", 1 + 2, 0x1234abcd);
 
     for (;;) {
         __asm__ __volatile__("wfi");
     }
 }
-
-void *memset(void *buf, char c, size_t n) {
-    uint8_t *p = (uint8_t *) buf;
-    while (n--)
-        *p++ = c;
-    return buf;
-}
-
 __attribute__((section(".text.boot")))
 __attribute__((naked))
 void boot(void) {
