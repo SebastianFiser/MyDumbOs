@@ -296,6 +296,7 @@ void boot(void) {
 }
 
 void handle_trap(struct trap_frame *f) {
+    (void)f;
     uint32_t scause = READ_CSR(scause);
     uint32_t stval = READ_CSR(stval);
     uint32_t user_pc = READ_CSR(sepc);
