@@ -166,8 +166,15 @@ __attribute__((naked)) void switch_context(uint32_t *prev_sp,
     );
 }
 
-void user_entry(void) {
-    PANIC("user_entry not implemented");
+__attribute__((naked)) void user_entry(void) {
+    __asm__ __volatile__(
+        "csrw sepc, %[sepc] \n"
+        "csrs sstatus, %[sstatus] \n"
+        "sret               \n"
+        :
+        : [sepc] "r" (USER_BASE),
+        [sstatus] "r" (SSTATUS_SPIE)
+    );
 }
 
 struct process procs[PROCS_MAX]; // All process control structures.
@@ -332,6 +339,8 @@ void kernel_main(void) {
     yield();
     PANIC("switched to idle process");
 }
+
+
 
 __attribute__((section(".text.boot")))
 __attribute__((naked))
