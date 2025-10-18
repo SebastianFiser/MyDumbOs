@@ -7,6 +7,8 @@
 #define PAGE_U    (1 << 4)   // User (accessible in user mode)
 #define USER_BASE 0x1000000
 #define SSTATUS_SPIE (1 << 5)
+#define SCAUSE_ECALL 8
+
 #pragma once
 #define PANIC(fmt, ...) \
     do { \
